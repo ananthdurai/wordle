@@ -75,6 +75,15 @@ func MatchLetterWithPosition(wordList []string, letter string, position int) []s
 }
 
 func MatchLetterWithAny(wordList []string, letter string) []string {
+	splitLetter := strings.Split(letter, ",")
+	var filterList = wordList
+	for _, l := range splitLetter {
+		filterList = MatchLetter(filterList, l)
+	}
+	return filterList
+}
+
+func MatchLetter(wordList []string, letter string) []string {
 	var filterList []string
 	for _, word := range wordList {
 		if strings.Index(word, letter) < 0 {
